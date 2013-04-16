@@ -97,7 +97,7 @@ var app = {
 		this.detailsURL = /^#restaurants\/(\d{1,})/;
 		//events to listen to
 		this.registerEvents();
-		this.store = new RestaurantStore(function() {
+		this.store = new WebSqlRestaurantStore(function() {
 		    //figure out the view to display
 			self.route();
 		});

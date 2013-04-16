@@ -31,7 +31,8 @@ var RestaurantView = function(restaurant){
 		    phoneNumbers[0] = new ContactField('home', restaurant.phone, true); //preferred number
 		    contact.phoneNumbers = phoneNumbers;
 		    contact.save();
-		    return false;
+		    alert("contact saved");
+			return false;
 	};
 	
 	this.initialize = function() {

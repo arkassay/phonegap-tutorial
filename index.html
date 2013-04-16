@@ -13,23 +13,45 @@
 	
 	
 	<!--html template to render the employee list items-->
-	<script id="employee-li-tpl" type="text/x-handlebars-template">
+	<script id="restaurant-li-tpl" type="text/x-handlebars-template">
 	    {{#.}}
-	    <li><a href="#employees/{{this.id}}">{{this.firstName}} {{this.lastName}}<br/>{{this.title}}</a></li>
+	    <li><a href="#restaurants/{{this.id}}">{{this.restaurantName}}</a></li>
 	    {{/.}}
+	</script>
+	
+	<!--html template - restaurant profile-->
+	<script id="restaurant-tpl" type="text/x-handlebars-template">
+	    <div class='header'><a href='#' class="button header-button header-button-left">Back</a><h1>Details</h1></div>
+	    <div class='details'>
+	        <img class='restaurant-image' src='img/{{restaurantName}}.jpg' />
+	        <h1>{{restaurantName}}</h1>
+	        <h2>{{city}}</h2>
+	        <span class="location"></span>
+	        <ul>
+	            <li><a href="tel:{{phone}}">Phone<br/>{{phone}}</a></li>
+	            <li><a href="mailto:{{email}}">Email<br/>{{email}}</a></li>
+				<li><a href="#" class="add-location-btn">Add Current Location</a></li>
+	        </ul>
+	    </div>
 	</script>
 	
 	
 <!-- 'phonegap.js' instructs PhoneGap Build to inject a platform specific version of phonegap.js at build time. In other words, phonegaps.js doesn’t need to be (and shouldn’t be) present in your project folder -->
 <script src="phonegap.js"></script>
 <script src="lib/jquery-1.8.2.min.js"></script>
-<script src="js/storage/memory-store.js"></script>
+
+<!--storage (currently reading json in file)-->
+<script src="js/storage/restaurant-store.js"></script>
+<script src="lib/iscroll.js"></script>
 
 <!--'handlebars.js' renders the correct template-->
 <script src="lib/handlebars.js"></script>
 
 <!--home view class-->
 <script src="js/HomeView.js"></script>
+
+<!--restaurant view class-->
+<script src="js/RestaurantView.js"></script>
 
 <!--main application js-->
 <script src="js/main.js"></script>

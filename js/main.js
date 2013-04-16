@@ -48,7 +48,7 @@ var app = {
 	},
     initialize: function() {
         var self = this;
-		//regular expression to match employee details urls
+		//regular expression to match restaurant details urls
 		this.detailsURL = /^#restaurants\/(\d{1,})/;
 		//events to listen to
 		this.registerEvents();

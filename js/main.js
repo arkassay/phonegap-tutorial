@@ -32,26 +32,26 @@ var app = {
 		$(window).on('hashchange', $.proxy(this.route, this));
 	},
 	route: function() {
-	    var self = this;
-		var hash = window.location.hash;
-	    //no hash, display home view
-		if (!hash) {
-	        if (this.homePage) {
-			    this.slidePage(this.homePage);
-			} else {
-			    this.homePage = new HomeView(this.store).render();
-			    this.slidePage(this.homePage);
-			}
-			return;
-	    }
-		//hash, render the view and pass teh correct data
-	    var match = hash.match(app.detailsURL);
-	    if (match) {
-	        this.store.findById(Number(match[1]), function(restaurant) {
-				self.slidePage(new RestaurantView(restaurant).render());
-			});
-	    }
-	},
+		    var self = this;
+			var hash = window.location.hash;
+		    //no hash, display home view
+			if (!hash) {
+		        if (this.homePage) {
+					this.slidePage(this.homePage);
+				} else {
+				    this.homePage = new HomeView(this.store).render();
+				    this.slidePage(this.homePage);
+				}
+				return;
+		    }
+			//hash, render the view and pass teh correct data
+		    var match = hash.match(this.detailsURL);
+		    if (match) {
+		        this.store.findById(Number(match[1]), function(restaurant) {
+					self.slidePage(new RestaurantView(restaurant).render());
+				});
+		    }
+		},
 	slidePage: function(page) {
 
 	    var currentPageDest,
@@ -66,7 +66,7 @@ var app = {
 	    }
 
 	    // Cleaning up: remove old pages that were moved out of the viewport
-	    $('.stage-right, .stage-left').not('.homePage').remove();
+	    $('.stage-right, .stage-left').not('#homePage').remove();
 
 	    if (page === app.homePage) {
 	        // Always apply a Back transition (slide from left) when we go back to the search page

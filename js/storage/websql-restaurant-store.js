@@ -40,14 +40,14 @@ var WebSqlRestaurantStore = function(successCallback, errorCallback) {
 
     this.addSampleData = function(tx, restaurants) {
         var restaurants = [
-                {"id": 1, "restaurantName": "Bistango", "city":"New York, NY", "phone":"212-999-8887", "email":"info@bistango.com", "latitude":-33.8669710, "longitude":151.1958750},
-	            {"id": 2, "restaurantName": "Eataly", "city":"New York, NY", "phone":"212-999-8887", "email":"info@eataly.com", "latitude":-33.8669710, "longitude":151.1958750},
-	            {"id": 3, "restaurantName": "Mozzerellis", "city":"New York, NY", "phone":"212-999-8887", "email":"info@mozzerellis.com", "latitude":-33.8669710, "longitude":151.1958750},
-				{"id": 4, "restaurantName": "Hale and Hearty", "city":"New York, NY", "phone":"212-999-8887", "email":"info@haleandhearty.com", "latitude":-33.8669710, "longitude":151.1958750},            
-				{"id": 5, "restaurantName": "Barbuonia", "city":"New York, NY", "phone":"212-999-8887", "email":"info@barbuonia.com", "latitude":-33.8669710, "longitude":151.1958750},
-				{"id": 6, "restaurantName": "Potbellys", "city":"New York, NY", "phone":"212-999-8887", "email":"info@potbellys.com", "latitude":-33.8669710, "longitude":151.1958750},
-				{"id": 7, "restaurantName": "Chipotle", "city":"New York, NY", "phone":"212-999-8887", "email":"info@chipotle.com", "latitude":-33.8669710, "longitude":151.1958750},
-				{"id": 8, "restaurantName": "Rhong Tiam", "city":"New York, NY", "phone":"212-999-8887", "email":"info@rhongtiam.com", "latitude":-33.8669710, "longitude":151.1958750},
+                {"id": 1, "restaurantName": "Bistango", "city":"New York, NY", "phone":"212-999-8887", "email":"info@bistango.com", "latitude":40.742585, "longitude":-73.9802},
+	            {"id": 2, "restaurantName": "Eataly", "city":"New York, NY", "phone":"212-999-8887", "email":"info@eataly.com", "latitude":40.74196, "longitude":-73.989608},
+	            {"id": 3, "restaurantName": "Mozzerellis", "city":"New York, NY", "phone":"212-999-8887", "email":"info@mozzerellis.com", "latitude":40.740492, "longitude":-73.987371},
+				{"id": 4, "restaurantName": "Hale and Hearty", "city":"New York, NY", "phone":"212-999-8887", "email":"info@haleandhearty.com", "latitude":40.740492, "longitude":-73.987371},            
+				{"id": 5, "restaurantName": "Barbuonia", "city":"New York, NY", "phone":"212-999-8887", "email":"info@barbuonia.com", "latitude":40.738327, "longitude":-73.987808},
+				{"id": 6, "restaurantName": "Potbellys", "city":"New York, NY", "phone":"212-999-8887", "email":"info@potbellys.com", "latitude":null, "longitude":null},
+				{"id": 7, "restaurantName": "Chipotle", "city":"New York, NY", "phone":"212-999-8887", "email":"info@chipotle.com", "latitude":null, "longitude":null},
+				{"id": 8, "restaurantName": "Rhong Tiam", "city":"New York, NY", "phone":"212-999-8887", "email":"info@rhongtiam.com", "latitude":null, "longitude":null},
             ];
         var l = restaurants.length;
         var sql = "INSERT OR REPLACE INTO restaurant " +

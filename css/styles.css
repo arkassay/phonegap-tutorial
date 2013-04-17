@@ -226,3 +226,8 @@ li>a.tappable-active {
     -webkit-transition-duration: .375s;
     -o-transition-duration: .375s;
 }
+#map-canvas {
+        margin: 0;
+        padding: 0;
+        height: 400px;
+      }

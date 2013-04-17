@@ -18,17 +18,53 @@ var RestaurantView = function(restaurant){
 	    return false;
 	};
 	
-	this.showLocation = function(){
+	this.showLocation = function(event){
+		event.preventDefault();
 		var latitude = restaurant.latitude;
 		var longitude = restaurant.longitude;
-		//console.log(latitude +", "+longitude);
-		var mapOptions = {
-		    zoom: 8,
-		    center: new google.maps.LatLng(-34.397, 150.644),
-		    mapTypeId: google.maps.MapTypeId.ROADMAP
-		  };
-		  map = new google.maps.Map(document.getElementById('map-canvas'),
-		      mapOptions);
+		var restaurantMarker = new google.maps.LatLng(latitude,longitude);
+		//console.log(latitude + ", "+longitude);
+		if(latitude && longitude){
+			var map;
+			var mapOptions = {
+			    zoom: 8,
+			    center: restaurantMarker,
+			    mapTypeId: google.maps.MapTypeId.ROADMAP
+			  };
+			map = new google.maps.Map(document.getElementById('map-canvas'),
+			      mapOptions);
+			var contentString = '<div id="content">'+
+				      '<div id="siteNotice">'+
+				      '</div>'+
+				      '<h1 id="firstHeading" class="firstHeading">'+ restaurant.restaurantName +'</h1>'+
+				      '<div id="bodyContent">'+
+				      '<p>Phone Number: '+restaurant.phone+'</p>'+
+					  '<p>Phone Number: '+restaurant.email+'</p>'+
+				      '</div>'+
+				      '</div>';
+
+		    var infowindow = new google.maps.InfoWindow({
+				  content: contentString
+			});
+			
+			//create restaurant marker
+			marker = new google.maps.Marker({
+				 map:map,
+				 draggable:true,
+				 animation: google.maps.Animation.DROP,
+				 position: restaurantMarker
+			});
+			//google.maps.event.addListener(marker, 'mouseover', toggleBounce);
+			//google.maps.event.addListener(marker, 'mouseout', toggleBounce);
+			google.maps.event.addListener(marker, 'click', function() {
+			    infowindow.open(map,marker);
+			  });
+		}else{
+			//no location has been added for this entry
+			alert("no location added, add now!")
+		}
+		
+			
 	}
 	
 	this.addToContacts = function(event){
@@ -53,8 +89,17 @@ var RestaurantView = function(restaurant){
 	    this.el = $('<div/>');
 		this.el.on('click', '.add-location-btn', this.addLocation);
 		this.el.on('click', '.add-contact-btn', this.addToContacts);
-		this.showLocation();
+		this.el.on('click', '.showmap', this.showLocation);
 	};
+	
 	this.initialize();
 }
 RestaurantView.template = Handlebars.compile($("#restaurant-tpl").html());
+function toggleBounce() {
+
+  if (marker.getAnimation() != null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}

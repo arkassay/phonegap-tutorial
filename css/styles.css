@@ -13,6 +13,13 @@ body {
     position: relative;
 }
 
+a, a:hover{
+	text-decoration: none;
+	color: black;
+}
+a:hover, a.on{
+	color: #4286f5;
+}
 .header {
     background: #666;
     -webkit-background-size: 1px 44px;
@@ -192,7 +199,7 @@ h2 {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: absolute;
-    top: 84px;
+    top: 128px;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -231,3 +238,15 @@ li>a.tappable-active {
         padding: 0;
         height: 400px;
       }
+.search-by {
+	height: 44px;
+	width: 100%;
+	line-height: 44px;
+}
+.search-by h2{
+	font-weight: bold;
+}
+.search-by h2, .search-by a{
+	display: inline-block;
+	margin-right: 10px;
+}

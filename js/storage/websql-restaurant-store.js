@@ -110,6 +110,33 @@ var WebSqlRestaurantStore = function(successCallback, errorCallback) {
         );
     };
 
+	this.findByCity = function(city, callback) {
+		this.db.transaction(
+            function(tx) {
+				var sql = "SELECT e.id, e.city, e.restaurantName " +
+                    "FROM restaurant e " +
+                    "WHERE e.city LIKE ? " +
+                    "GROUP BY e.id ORDER BY e.restaurantName";
+
+
+                
+
+                tx.executeSql(sql, ['%' + city + '%'], function(tx, results) {
+                    var len = results.rows.length,
+                        restaurants = [],
+                        i = 0;
+                    for (; i < len; i = i + 1) {
+                        restaurants[i] = results.rows.item(i);
+                    }
+                    callback(restaurants);
+                });
+            },
+            function(error) {
+                alert("Transaction Error: " + error.message);
+            }
+        );
+	};
+
     this.initializeDatabase(successCallback, errorCallback);
 
 }

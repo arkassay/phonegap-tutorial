@@ -26,7 +26,9 @@ var WebSqlRestaurantStore = function(successCallback, errorCallback) {
             "restaurantName VARCHAR(50), " +
             "city VARCHAR(50), " +
             "phone VARCHAR(50), " +
-            "email VARCHAR(50))";
+            "email VARCHAR(50), " + 
+			"latitude FLOAT(10), " + 
+			"longitude FLOAT(10))";
         tx.executeSql(sql, null,
                 function() {
                     console.log('Create table success');
@@ -38,23 +40,23 @@ var WebSqlRestaurantStore = function(successCallback, errorCallback) {
 
     this.addSampleData = function(tx, restaurants) {
         var restaurants = [
-                {"id": 1, "restaurantName": "Bistango", "city":"New York, NY", "phone":"212-999-8887", "email":"info@bistango.com"},
-	            {"id": 2, "restaurantName": "Eataly", "city":"New York, NY", "phone":"212-999-8887", "email":"info@eataly.com"},
-	            {"id": 3, "restaurantName": "Mozzerellis", "city":"New York, NY", "phone":"212-999-8887", "email":"info@mozzerellis.com"},
-				{"id": 4, "restaurantName": "Hale and Hearty", "city":"New York, NY", "phone":"212-999-8887", "email":"info@haleandhearty.com"},            
-				{"id": 5, "restaurantName": "Barbuonia", "city":"New York, NY", "phone":"212-999-8887", "email":"info@barbuonia.com"},
-				{"id": 6, "restaurantName": "Potbellys", "city":"New York, NY", "phone":"212-999-8887", "email":"info@potbellys.com"},
-				{"id": 7, "restaurantName": "Chipotle", "city":"New York, NY", "phone":"212-999-8887", "email":"info@chipotle.com"},
-				{"id": 8, "restaurantName": "Rhong Tiam", "city":"New York, NY", "phone":"212-999-8887", "email":"info@rhongtiam.com"},
+                {"id": 1, "restaurantName": "Bistango", "city":"New York, NY", "phone":"212-999-8887", "email":"info@bistango.com", "latitude":-33.8669710, "longitude":151.1958750},
+	            {"id": 2, "restaurantName": "Eataly", "city":"New York, NY", "phone":"212-999-8887", "email":"info@eataly.com", "latitude":-33.8669710, "longitude":151.1958750},
+	            {"id": 3, "restaurantName": "Mozzerellis", "city":"New York, NY", "phone":"212-999-8887", "email":"info@mozzerellis.com", "latitude":-33.8669710, "longitude":151.1958750},
+				{"id": 4, "restaurantName": "Hale and Hearty", "city":"New York, NY", "phone":"212-999-8887", "email":"info@haleandhearty.com", "latitude":-33.8669710, "longitude":151.1958750},            
+				{"id": 5, "restaurantName": "Barbuonia", "city":"New York, NY", "phone":"212-999-8887", "email":"info@barbuonia.com", "latitude":-33.8669710, "longitude":151.1958750},
+				{"id": 6, "restaurantName": "Potbellys", "city":"New York, NY", "phone":"212-999-8887", "email":"info@potbellys.com", "latitude":-33.8669710, "longitude":151.1958750},
+				{"id": 7, "restaurantName": "Chipotle", "city":"New York, NY", "phone":"212-999-8887", "email":"info@chipotle.com", "latitude":-33.8669710, "longitude":151.1958750},
+				{"id": 8, "restaurantName": "Rhong Tiam", "city":"New York, NY", "phone":"212-999-8887", "email":"info@rhongtiam.com", "latitude":-33.8669710, "longitude":151.1958750},
             ];
         var l = restaurants.length;
         var sql = "INSERT OR REPLACE INTO restaurant " +
-            "(id, restaurantName, city, phone, email) " +
-            "VALUES (?, ?, ?, ?, ?)";
+            "(id, restaurantName, city, phone, email, latitude, longitude) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?)";
         var e;
         for (var i = 0; i < l; i++) {
             e = restaurants[i];
-            tx.executeSql(sql, [e.id, e.restaurantName, e.city, e.phone, e.email],
+            tx.executeSql(sql, [e.id, e.restaurantName, e.city, e.phone, e.email, e.latitude, e.longitude],
                     function() {
                         console.log('INSERT success');
                     },
@@ -94,7 +96,7 @@ var WebSqlRestaurantStore = function(successCallback, errorCallback) {
     this.findById = function(id, callback) {
         this.db.transaction(
             function(tx) {
-				var sql = "SELECT e.id, e.restaurantName, e.city, e.phone, e.email " +
+				var sql = "SELECT e.id, e.restaurantName, e.city, e.phone, e.email, e.latitude, e.longitude " +
                     "FROM restaurant e " +
                     "WHERE e.id=:id";
 

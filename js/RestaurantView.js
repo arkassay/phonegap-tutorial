@@ -18,6 +18,19 @@ var RestaurantView = function(restaurant){
 	    return false;
 	};
 	
+	this.showLocation = function(){
+		var latitude = restaurant.latitude;
+		var longitude = restaurant.longitude;
+		//console.log(latitude +", "+longitude);
+		var mapOptions = {
+		    zoom: 8,
+		    center: new google.maps.LatLng(-34.397, 150.644),
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		  };
+		  map = new google.maps.Map(document.getElementById('map-canvas'),
+		      mapOptions);
+	}
+	
 	this.addToContacts = function(event){
 		event.preventDefault();
 		    console.log('addToContacts');
@@ -40,6 +53,7 @@ var RestaurantView = function(restaurant){
 	    this.el = $('<div/>');
 		this.el.on('click', '.add-location-btn', this.addLocation);
 		this.el.on('click', '.add-contact-btn', this.addToContacts);
+		this.showLocation();
 	};
 	this.initialize();
 }

@@ -26,43 +26,9 @@ var RestaurantView = function(restaurant){
 		event.preventDefault();
 		var latitude = restaurant.latitude;
 		var longitude = restaurant.longitude;
-		var restaurantMarker = new google.maps.LatLng(latitude,longitude);
 		
 		if(latitude && longitude){
-			var map;
-			var mapOptions = {
-			    zoom: 8,
-			    center: restaurantMarker,
-			    mapTypeId: google.maps.MapTypeId.ROADMAP
-			  };
-			map = new google.maps.Map(document.getElementById('map-canvas'),
-			      mapOptions);
-			var contentString = '<div id="content">'+
-				      '<div id="siteNotice">'+
-				      '</div>'+
-				      '<h1 id="firstHeading" class="firstHeading">'+ restaurant.restaurantName +'</h1>'+
-				      '<div id="bodyContent">'+
-				      '<p>Phone Number: '+restaurant.phone+'</p>'+
-					  '<p>Phone Number: '+restaurant.email+'</p>'+
-				      '</div>'+
-				      '</div>';
-
-		    var infowindow = new google.maps.InfoWindow({
-				  content: contentString
-			});
-			
-			//create restaurant marker
-			marker = new google.maps.Marker({
-				 map:map,
-				 draggable:true,
-				 animation: google.maps.Animation.DROP,
-				 position: restaurantMarker
-			});
-			//google.maps.event.addListener(marker, 'mouseover', toggleBounce);
-			//google.maps.event.addListener(marker, 'mouseout', toggleBounce);
-			google.maps.event.addListener(marker, 'click', function() {
-			    infowindow.open(map,marker);
-			  });
+			this.googleMap = new GoogleMapsFunction().renderMap(restaurant);
 		}else{
 			//no location has been added for this entry
 			alert("no location added, add now!")

@@ -101,6 +101,7 @@ var app = {
 		    //figure out the view to display
 			self.route();
 		});
+		this.googlemapfunctions = new GoogleMapsFunction();
 	}
 
 };

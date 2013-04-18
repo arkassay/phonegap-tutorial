@@ -33,8 +33,10 @@
 	        <h2>{{city}}</h2>
 	        <span class="location"></span>
 	        <ul>
-	            <li><a href="tel:{{phone}}">Phone<br/>{{phone}}</a></li>
-	            <li><a href="mailto:{{email}}">Email<br/>{{email}}</a></li>
+	            <li><a href="tel:{{phone}}"><strong>Phone:</strong> {{phone}}</a></li>
+	            <li><a href="mailto:{{email}}"><strong>Email:</strong> {{email}}</a></li>
+				<li><strong>Rating of GF friendliness (1-5):</strong> {{rating}}</li>
+				<li><strong>Description: </strong><br/>{{description}}</li>
 				<li><a href="#" class="add-location-btn">Add Current Location</a></li>
 				<li><a href="#" class="add-contact-btn">Add to Contacts</a></li>
 				<li><a href="#" class="showmap">Show Map</a></li>
@@ -51,7 +53,7 @@
 <!--storage (currently reading json in file)-->
 <script src="js/storage/websql-restaurant-store.js"></script>
 <script src="lib/iscroll.js"></script>
-
+<script src="js/GoogleMapsFunction.js"></script>
 <!--'handlebars.js' renders the correct template-->
 <script src="lib/handlebars.js"></script>
 

@@ -117,17 +117,17 @@ li {
 }
 
 li {
-    padding: 0;
+    padding: 10px 5%;
     display: -webkit-box;
     display: -moz-box;
     display: box;
-    width: 100%;
+    width: 90%;
 }
 
 li>a {
     color: #000;
     display: block;
-    padding: 5px;
+    /*padding: 5px;*/
     text-decoration: none;
     width: 100%;
     -webkit-box-flex: 1;

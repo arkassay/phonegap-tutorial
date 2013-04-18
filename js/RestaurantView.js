@@ -1,13 +1,17 @@
 var RestaurantView = function(restaurant){
 	this.render = function() {
 	    this.el.html(RestaurantView.template(restaurant));
+		//retrieve address and print on page from latitude & longitude
+		if(restaurant.latitude && restaurant.longitude){
+			this.googleMapFunctions = new GoogleMapsFunction().reverseGeocoder(restaurant.latitude, restaurant.longitude);
+		}
 		return this;
 	};
 	
 	//add location to the restaurant profile page
 	this.addLocation = function(event) {
 	    event.preventDefault();
-	    console.log('addLocation');
+	    //console.log('addLocation');
 	    navigator.geolocation.getCurrentPosition(
 	        function(position) {
 	            $('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
@@ -23,7 +27,7 @@ var RestaurantView = function(restaurant){
 		var latitude = restaurant.latitude;
 		var longitude = restaurant.longitude;
 		var restaurantMarker = new google.maps.LatLng(latitude,longitude);
-		//console.log(latitude + ", "+longitude);
+		
 		if(latitude && longitude){
 			var map;
 			var mapOptions = {
@@ -64,7 +68,7 @@ var RestaurantView = function(restaurant){
 			alert("no location added, add now!")
 		}
 		
-			
+		
 	}
 	
 	this.addToContacts = function(event){
@@ -90,6 +94,7 @@ var RestaurantView = function(restaurant){
 		this.el.on('click', '.add-location-btn', this.addLocation);
 		this.el.on('click', '.add-contact-btn', this.addToContacts);
 		this.el.on('click', '.showmap', this.showLocation);
+		
 	};
 	
 	this.initialize();
